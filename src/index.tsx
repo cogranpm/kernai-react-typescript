@@ -4,6 +4,44 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+type Todo = Readonly<{
+    id: number
+    text: string
+    done: boolean
+}>
+
+// intersection type
+// & is a type operator 
+type CompletedTodo = Todo & {
+   readonly done: true 
+}
+
+const myTodo: Todo = {
+    id: 1,
+    text: '...',
+    done: true
+}
+
+
+
+function toggleTodo(todo: Todo) : Todo {
+    return  {
+        id: todo.id,
+        text: todo.text,
+        done: !todo.done
+    }
+}
+
+function completeAll(todos: readonly Todo[]): CompletedTodo[] {
+    return todos.map(todo => ({
+        ...todo,
+        done: true
+    }))
+}
+
+console.log(myTodo.text)
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
