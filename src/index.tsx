@@ -9,6 +9,7 @@ type Todo = Readonly<{
     id: number
     text: string
     done: boolean
+    place?: Place
 }>
 
 // intersection type
@@ -17,19 +18,31 @@ type CompletedTodo = Todo & {
    readonly done: true 
 }
 
+// union type
+type Place = 'home' | 'work' | { custom: string}
+
 const myTodo: Todo = {
     id: 1,
     text: '...',
     done: true
 }
 
-
+function placeToString(place: Place): string {
+    if (place === 'home') {
+        return "home"
+    } else if (place === 'work'){
+        return "work"
+    } else {
+        return place.custom
+    }
+}
 
 function toggleTodo(todo: Todo) : Todo {
     return  {
         id: todo.id,
         text: todo.text,
-        done: !todo.done
+        done: !todo.done,
+        place: todo.place
     }
 }
 
@@ -40,7 +53,12 @@ function completeAll(todos: readonly Todo[]): CompletedTodo[] {
     }))
 }
 
-console.log(myTodo.text)
+const listOfTodo: Todo[] = [
+    {id: 1, text: '...', done: false, place: 'work'},
+    {id: 2, text: 'soem stuff', done: true, place: 'home'}]
+
+console.log(completeAll(listOfTodo))
+
 
 ReactDOM.render(
   <React.StrictMode>
