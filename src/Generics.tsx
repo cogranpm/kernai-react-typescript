@@ -1,5 +1,16 @@
 import React from 'react';
 
+interface Pair<A, B> {
+    first: A
+    second: B
+}
+
+// or intefaces can be defined as a type alias
+type PairA<A, B> = {
+    first: A
+    second: B
+}
+
 
 // this is a generic function
 // the = number means make number the default type allowed
@@ -20,7 +31,7 @@ function makeState<S extends number | string = number>() {
 
 // note the extends string | F
 function makePair<F extends number, S extends string | F>() {
-    let pair: { first: F; second: S }
+    let pair: Pair<F, S> 
 
     function getPair() {
         return pair
@@ -35,6 +46,24 @@ function makePair<F extends number, S extends string | F>() {
 
     return { getPair, setPair }
 }
+
+
+// a generic class
+class State<S> {
+    state: S
+
+    getState() {
+        return this.state
+    }
+
+    setState(x: S){
+        this.state = x
+    }
+}
+
+
+
+// the jsx part
 
 function Generics(){
 
