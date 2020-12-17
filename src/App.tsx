@@ -1,6 +1,66 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Generics from './Generics';
+
+
+// all this stuff from the tutorial at https://ts.chibicode.com/todo/
+// it's a typescript tutorial
+type Todo = Readonly<{
+    id: number
+    text: string
+    done: boolean
+    place?: Place
+}>
+
+// intersection type
+// & is a type operator 
+type CompletedTodo = Todo & {
+   readonly done: true 
+}
+
+// union type
+type Place = 'home' | 'work' | { custom: string}
+
+const myTodo: Todo = {
+    id: 1,
+    text: '...',
+    done: true
+}
+
+function placeToString(place: Place): string {
+    if (place === 'home') {
+        return "home"
+    } else if (place === 'work'){
+        return ":smile work"
+    } else {
+        return place.custom
+    }
+}
+
+function toggleTodo(todo: Todo) : Todo {
+    return  {
+        id: todo.id,
+        text: todo.text,
+        done: !todo.done,
+        place: todo.place
+    }
+}
+
+function completeAll(todos: readonly Todo[]): CompletedTodo[] {
+    return todos.map(todo => ({
+        ...todo,
+        done: true
+    }))
+}
+
+const listOfTodo: Todo[] = [
+    {id: 1, text: '...', done: false, place: 'work'},
+    {id: 2, text: 'soem stuff', done: true, place: 'home'}]
+
+console.log(completeAll(listOfTodo))
+
+
 
 type AppProps = {
     title: string
@@ -8,23 +68,12 @@ type AppProps = {
 
 function App(props: AppProps) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>as requested, I did this: Props: {props.title} </p>
-        <p>does it auto reload</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+          Header
       </header>
+      <p>some stuff here</p>
+      <Generics/>
     </div>
   );
 }
