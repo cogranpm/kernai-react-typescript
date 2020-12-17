@@ -2,7 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+type AppProps = {
+    title: string
+}
+
+function App(props: AppProps) {
   return (
     <div className="App">
       <header className="App-header">
@@ -10,7 +14,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>as requested, I did this </p>
+        <p>as requested, I did this: Props: {props.title} </p>
         <p>does it auto reload</p>
         <a
           className="App-link"

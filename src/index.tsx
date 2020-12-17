@@ -31,7 +31,7 @@ function placeToString(place: Place): string {
     if (place === 'home') {
         return "home"
     } else if (place === 'work'){
-        return "work"
+        return ":smile work"
     } else {
         return place.custom
     }
@@ -62,7 +62,7 @@ console.log(completeAll(listOfTodo))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App title = "fred" />
   </React.StrictMode>,
   document.getElementById('root')
 );
