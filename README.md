@@ -1,3 +1,10 @@
+This was created via the create-react-app with typescript
+also acts as a tutorial for typescript
+using it to evaluate typescript over kotlinjs
+and to get used to react and experiment with the 
+associated libraries
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
